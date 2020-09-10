@@ -13,13 +13,13 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-        BufferedReader reader =
-                new BufferedReader(new InputStreamReader(System.in));
-        try {
-            String str = reader.readLine();
-            System.out.println("Input "+ str);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        BufferedReader reader =
+//                new BufferedReader(new InputStreamReader(System.in));
+//        try {
+//            String str = reader.readLine();
+//            System.out.println("Input "+ str);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
