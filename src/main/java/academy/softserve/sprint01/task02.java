@@ -22,9 +22,15 @@ import java.util.List;
  */
 public class task02 {
     public static void main(String[] args) {
-        Employee emp1 = new Employee("Name", 10.0F);
-        Employee emp2 = new Employee("Name1", 34.05f);
+//        Employee emp1 = new Employee("Name", 10.0F);
+//        Employee emp2 = new Employee("Name1", 34.05f);
+        Employee emp1 = new Employee();
+        Employee emp2 = new Employee();
         Employee[] employees = new Employee[2];
+        emp1.fullName = "Name";
+        emp1.salary = 10.0F;
+        emp2.fullName = "Name1";
+        emp2.salary = 34.05f;
         employees[0]=emp1;
         employees[1]=emp2;
         String employeesInfo = "[";
@@ -46,8 +52,16 @@ class Employee {
     public String fullName;
     public float salary;
 
-    public Employee(String fullName, float salary) {
-        this.fullName = fullName;
-        this.salary = salary;
-    }
+//    public Employee(String fullName, float salary) {
+//        this.fullName = fullName;
+//        this.salary = salary;
+//    }
+
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
+//
+//    public void setSalary(float salary) {
+//        this.salary = salary;
+//    }
 }
