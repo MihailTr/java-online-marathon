@@ -24,9 +24,9 @@ public class task02 {
     public static void main(String[] args) {
         Employee emp1 = new Employee("Name", 10.0F);
         Employee emp2 = new Employee("Name1", 34.05f);
-        ArrayList<Employee> employees = new ArrayList<>();
-        employees.add(emp1);
-        employees.add(emp2);
+        Employee[] employees = new Employee[2];
+        employees[0]=emp1;
+        employees[1]=emp2;
         String employeesInfo = "[";
 
         for (Employee e : employees) {
