@@ -1,5 +1,4 @@
 package academy.softserve.sprint01;
-
 /**
  * Create a Product class with fields name of type String and price of type double.
  *
