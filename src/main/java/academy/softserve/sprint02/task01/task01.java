@@ -33,12 +33,12 @@ package academy.softserve.sprint02.task01;
 public class task01 {
 }
 
-class PersonT {
+class Person {
     int age;
     String healthInfo;
     String name;
 
-    public PersonT(int age, String healthInfo, String name) {
+    public Person(int age, String healthInfo, String name) {
         this.age = age;
         this.healthInfo = healthInfo;
         this.name = name;
@@ -47,7 +47,7 @@ class PersonT {
 
 }
 
-class Child extends PersonT{
+class Child extends Person{
     String childIDNumber;
 
     public Child(int age, String healthInfo, String name, String childIDNumber) {
@@ -56,7 +56,7 @@ class Child extends PersonT{
     }
 }
 
-class Adult extends PersonT{
+class Adult extends Person{
     String passportNumber;
 
     public Adult(int age, String healthInfo, String name, String passportNumber) {
