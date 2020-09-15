@@ -45,7 +45,7 @@ class Caffee implements DrinkReceipt, DrinkPreparation, Rating {
     // Code
     private String name;
     private int rating;
-    private Map<String, Integer> ingredients = new HashMap<String, Integer>();
+    private Map<String, Integer> ingredients = new HashMap<>();
 
     public Caffee(String name, int rating) {
         this.name = name;
@@ -104,10 +104,66 @@ class Cappuccino extends Caffee {
 }
 
 public class MyUtils {
+    Map<String, ArrayList<Integer>> mapList = new HashMap<>();
+    Map<String, Double> average = new HashMap<>();
+
     public Map<String, Double> averageRating(List<Caffee> coffees) {
-        if (coffees.isEmpty()){
+        if (coffees.isEmpty()) {
             return null;
+        }else {
+            for (Caffee cof : coffees) {
+                ArrayList<Integer> cofReit = new ArrayList<>();
+                String coffeeName = cof.getName();
+                int coffValue = cof.getRating();
+                if (!mapList.containsKey(coffeeName)) {
+                    cofReit.add(coffValue);
+                    mapList.put(coffeeName, cofReit);
+                } else {
+                    ArrayList<Integer> current = mapList.get(coffeeName);
+                    current.add(coffValue);
+                    mapList.put(coffeeName, current);
+                }
+            }
+
+            for (Map.Entry<String, ArrayList<Integer>> sumList : mapList.entrySet()) {
+                int sumVal = 0;
+                ArrayList<Integer> sumCurr = sumList.getValue();
+                for (Object s : sumCurr) {
+                    sumVal += (int)s;
+                }
+                double valSum = (double) sumVal / sumCurr.size();
+                average.put(sumList.getKey(), valSum);
+            }
         }
-        return null;
+        return average;
+    }
+}
+
+/**
+ * Create a averageRating() method of the MyUtils class to return a Map with
+ * coffee name as key and coffee average rating as value.
+ * For example, for a given list
+ * [Espresso [name=Espresso, rating=8], Cappuccino [name=Cappuccino, rating=10],
+ * Espresso [name=Espresso, rating=10], Cappuccino [name=Cappuccino, rating=6],
+ * Caffee [name=Caffee, rating=6]]
+ * you should get
+ * {Espresso=9.00, Cappuccino=8.00, Caffee=6.00}
+ */
+
+class task02 {
+    public static void main(String[] args) {
+        List<Caffee> testList = new ArrayList<>();
+        List<Caffee> testList1 = new ArrayList<>();
+        testList.add(new Espresso("Espresso", 7));
+        testList.add(new Cappuccino("Cappuccino", 10));
+        testList.add(new Espresso("Espresso", 8));
+        testList.add(new Cappuccino("Cappuccino", 10));
+        testList.add(new Caffee("Caffee", 6));
+        testList.add(new Caffee("Caffee", 6));
+
+        MyUtils myUtils = new MyUtils();
+//        System.out.println(testList.toString());
+        System.out.println(myUtils.averageRating(testList));
+        System.out.println(myUtils.averageRating(testList1));
     }
 }
