@@ -1,4 +1,4 @@
-package academy.softserve.sprint02;
+package academy.softserve.sprint02.tack03;
 /**
  * Create next types: Person (field String name), Student (fields String studyPlace, int studyYears)
  * and Worker (fields String workPosition, int experienceYears). Classes Student and Worker are
@@ -124,7 +124,7 @@ class Worker extends Person {
     }
 }
 
-public class MyUtils1 {
+public class MyUtils {
     public List<Person> maxDuration(List<Person> persons) {
         // Code
         List<Person> workerList = new ArrayList<>();
@@ -199,7 +199,7 @@ class task03 {
         originList.add(new Worker("Ira", "Manager", 8));
         originList.add(new Student("Ihor", "University", 4));
 
-        MyUtils1 myUtils1 = new MyUtils1();
+        MyUtils myUtils1 = new MyUtils();
         myUtils1.maxDuration(originList);
         System.out.println(myUtils1.maxDuration(originList).toString());
     }

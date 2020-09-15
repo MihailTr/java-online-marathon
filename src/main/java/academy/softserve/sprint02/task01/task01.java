@@ -1,4 +1,4 @@
-package academy.softserve.sprint02;
+package academy.softserve.sprint02.task01;
 
 /**
  * Please, make refactoring of the code:
@@ -33,12 +33,12 @@ package academy.softserve.sprint02;
 public class task01 {
 }
 
-class Person {
+class PersonT {
     int age;
     String healthInfo;
     String name;
 
-    public Person(int age, String healthInfo, String name) {
+    public PersonT(int age, String healthInfo, String name) {
         this.age = age;
         this.healthInfo = healthInfo;
         this.name = name;
@@ -47,7 +47,7 @@ class Person {
 
 }
 
-class Child extends Person{
+class Child extends PersonT{
     String childIDNumber;
 
     public Child(int age, String healthInfo, String name, String childIDNumber) {
@@ -56,7 +56,7 @@ class Child extends Person{
     }
 }
 
-class Adult extends Person{
+class Adult extends PersonT{
     String passportNumber;
 
     public Adult(int age, String healthInfo, String name, String passportNumber) {

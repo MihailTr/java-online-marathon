@@ -1,4 +1,4 @@
-package academy.softserve.sprint02;
+package academy.softserve.sprint02.task02;
 /**
  * Create interface DrinkReceipt with methods String getName() and
  * DrinkReceipt addComponent(String componentName, int componentCount).
