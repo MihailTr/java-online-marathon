@@ -122,30 +122,37 @@ class Manager extends Employee {
 public class MyUtils {
     public List<Employee> largestEmployees(List<Employee> workers) {
         // Code
-        Integer maxExp = workers.stream()
-                .filter(Objects::nonNull)
-                .map(worker -> worker.getExperience())
-                .max(Integer::compareTo)
-                .get();
+        if (workers == null) {
+            return null;
+        }
+        if (workers.size() == 0) {
+            return workers;
+        } else {
+            Integer maxExp = workers.stream()
+                    .filter(Objects::nonNull)
+                    .map(worker -> worker.getExperience())
+                    .max(Integer::compareTo)
+                    .get();
 
-        List<Employee> expList = workers.stream()
-                .filter(Objects::nonNull)
-                .filter(worker -> worker.getExperience() == maxExp)
-                .collect(Collectors.toList());
+            List<Employee> expList = workers.stream()
+                    .filter(Objects::nonNull)
+                    .filter(worker -> worker.getExperience() == maxExp)
+                    .collect(Collectors.toList());
 
-        BigDecimal maxPay = workers.stream()
-                .filter(Objects::nonNull)
-                .map(worker -> worker.getPayment())
-                .max(BigDecimal::compareTo)
-                .get();
+            BigDecimal maxPay = workers.stream()
+                    .filter(Objects::nonNull)
+                    .map(worker -> worker.getPayment())
+                    .max(BigDecimal::compareTo)
+                    .get();
 
-        List<Employee> payList = workers.stream()
-                .filter(Objects::nonNull)
-                .filter(worker -> worker.getPayment().equals(maxPay))
-                .collect(Collectors.toList());
+            List<Employee> payList = workers.stream()
+                    .filter(Objects::nonNull)
+                    .filter(worker -> worker.getPayment().equals(maxPay))
+                    .collect(Collectors.toList());
 
-        expList.addAll(payList);
-        return expList;
+            expList.addAll(payList);
+            return expList;
+        }
     }
 }
 
