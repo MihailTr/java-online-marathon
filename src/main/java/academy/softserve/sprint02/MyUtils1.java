@@ -41,10 +41,7 @@ package academy.softserve.sprint02;
  */
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class Person {
     // Code
@@ -77,6 +74,20 @@ class Student extends Person {
     public int getStudyYears() {
         return studyYears;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return studyYears == student.studyYears && Objects.equals(getName(), student.getName()) &&
+                Objects.equals(studyPlace, student.studyPlace);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studyPlace, studyYears, getName());
+    }
 }
 
 class Worker extends Person {
@@ -97,6 +108,20 @@ class Worker extends Person {
     public int getExperienceYears() {
         return experienceYears;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Worker)) return false;
+        Worker worker = (Worker) o;
+        return experienceYears == worker.experienceYears && Objects.equals(getName(), worker.getName()) &&
+                Objects.equals(workPosition, worker.workPosition);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(workPosition, experienceYears, getName());
+    }
 }
 
 public class MyUtils1 {
@@ -106,6 +131,12 @@ public class MyUtils1 {
         List<Person> studentList = new ArrayList<>();
         List<Person> mapPers= new ArrayList<>();
         mapPers.clear();
+        if (persons == null) {
+            return null;
+        }
+        if (persons.size() == 0) {
+            return persons;
+        }
         if (persons.isEmpty()) {
             return mapPers;
         } else {
