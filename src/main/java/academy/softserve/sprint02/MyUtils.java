@@ -108,8 +108,10 @@ public class MyUtils {
     Map<String, Double> average = new HashMap<>();
 
     public Map<String, Double> averageRating(List<Caffee> coffees) {
+        average.clear();
         if (coffees.isEmpty()) {
-            return null;
+            return average;
+
         }else {
             for (Caffee cof : coffees) {
                 ArrayList<Integer> cofReit = new ArrayList<>();
