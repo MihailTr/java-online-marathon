@@ -100,11 +100,11 @@ class Worker extends Person {
 }
 
 public class MyUtils1 {
-    public Map<String, List<Person>> maxDuration(List<Person> persons) {
+    public List<Person> maxDuration(List<Person> persons) {
         // Code
         List<Person> workerList = new ArrayList<>();
         List<Person> studentList = new ArrayList<>();
-        Map<String, List<Person>> mapPers= new HashMap<>();
+        List<Person> mapPers= new ArrayList<>();
         mapPers.clear();
         if (persons.isEmpty()) {
             return mapPers;
@@ -117,30 +117,18 @@ public class MyUtils1 {
                     studentList.add(list);
                 }
             }
+
             for (Person person: workerList){
-                ArrayList<Person>maxPercon = new ArrayList<>();
                 int maxW = maxValueWork(workerList);
-                if ((!mapPers.containsKey(person.getClass().getSimpleName()))
-                        &&maxW==((Worker)person).getExperienceYears()) {
-                    maxPercon.add(person);
-                    mapPers.put(person.getClass().getSimpleName(), maxPercon);
-                }else if (maxW==((Worker)person).getExperienceYears()){
-                    List<Person> current = mapPers.get(person.getClass().getSimpleName());
-                    current.add(person);
-                    mapPers.put(person.getClass().getSimpleName(), current);
+                if (maxW==((Worker)person).getExperienceYears()) {
+                    mapPers.add(person);
                 }
             }
+
             for (Person person: studentList){
-                ArrayList<Person>maxPercon = new ArrayList<>();
                 int maxS = maxValueStud(studentList);
-                if ((!mapPers.containsKey(person.getClass().getSimpleName()))
-                        &&maxS==((Student)person).getStudyYears()) {
-                    maxPercon.add(person);
-                    mapPers.put(person.getClass().getSimpleName(), maxPercon);
-                }else if (maxS==((Student)person).getStudyYears()){
-                    List<Person> current1 = mapPers.get(person.getClass().getSimpleName());
-                    current1.add(person);
-                    mapPers.put(person.getClass().getSimpleName(), current1);
+                if (maxS==((Student)person).getStudyYears()) {
+                    mapPers.add(person);
                 }
             }
         }
@@ -156,6 +144,7 @@ public class MyUtils1 {
         }
         return max;
     }
+
     int maxValueStud(List<Person> listMax) {
         int max = 0;
         for (Person person : listMax) {
