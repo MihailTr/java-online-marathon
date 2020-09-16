@@ -131,6 +131,9 @@ public class MyUtils {
         List<Person> studentList = new ArrayList<>();
         List<Person> mapPers= new ArrayList<>();
         mapPers.clear();
+        for (Person o:persons) {
+            if (o==null) return mapPers;
+        }
         if (persons == null) {
             return null;
         }
