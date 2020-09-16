@@ -30,63 +30,71 @@ package academy.softserve.sprint02.task05;
 import java.util.ArrayList;
 import java.util.List;
 
-class Rectang {
-    // Code
-    private double height;
+abstract class Shape{
     private double width;
-    private double sum;
+    private double height;
 
-    public Rectang(){}
-
-    public Rectang(double width) {
+    public Shape(double width) {
         this.width = width;
     }
 
-    public Rectang(double height, double width) {
+    public Shape(double height, double width) {
         this.height = height;
         this.width = width;
     }
 
     public double getPerimeter(){
-        sum=0.0;
+        double sum =0.0;
         if (this.getClass().getSimpleName().equals("Rectang")) {
-           sum = (double) height * width;
+            sum = (double) height * width;
         }else if (this.getClass().getSimpleName().equals("Square")){
-           sum = (double) width * width;
+            sum = (double) width * width;
         }
         return sum;
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+    @Override
     public int hashCode() {
         return super.hashCode();
+    }
+}
+
+class Rectang extends Shape{
+    // Code
+
+    public Rectang(double height, double width) {
+        super(height, width);
     }
 
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
 
-class Square extends Rectang {
+class Square extends Shape {
     // Code
-
-    public Square() {
-    }
-
     public Square(double width) {
         super(width);
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+    @Override
     public int hashCode() {
         return super.hashCode();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }
 public class MyUtils {
     public double sumPerimeter(List<?> firures) {
@@ -101,7 +109,7 @@ public class MyUtils {
             for (Object o : firures) {
                 if (o.getClass().getSimpleName().equals("Rectang")) {
                     sumPer = sumPer + ((Rectang) o).getPerimeter();
-                } else {
+                } else if (o.getClass().getSimpleName().equals("Square")){
                     sumPer = sumPer + ((Square) o).getPerimeter();
                 }
             }
@@ -114,10 +122,10 @@ public class MyUtils {
 class task05 {
     public static void main(String[] args) {
 //        Rectang rectang = new Rectang(2, 5);
-        Square square = new Square(4);
+//        Square square = new Square(4);
 //        Square square1 = new Square(4.5);
 //        System.out.println(rectang.getPerimeter());
-        System.out.println(square.getPerimeter());
+//        System.out.println(square.getPerimeter());
 //        System.out.println(square1.getPerimeter());
         List<Object> firuresTest = new ArrayList<>();
         firuresTest.add(new Square (4.00));
