@@ -30,26 +30,20 @@ package academy.softserve.sprint02.task05;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Shape{
+class Rectang{
+    // Code
     private double width;
     private double height;
+    private double sum = 0.0;
 
-    public Shape(double width) {
-        this.width = width;
-    }
 
-    public Shape(double height, double width) {
+    public Rectang(double height, double width) {
         this.height = height;
         this.width = width;
     }
 
     public double getPerimeter(){
-        double sum =0.0;
-        if (this.getClass().getSimpleName().equals("Rectang")) {
-            sum = (double) height * width;
-        }else if (this.getClass().getSimpleName().equals("Square")){
-            sum = (double) width * width;
-        }
+        sum = (height + width)*(double)2;
         return sum;
     }
 
@@ -63,27 +57,18 @@ abstract class Shape{
     }
 }
 
-class Rectang extends Shape{
+class Square{
     // Code
+    private double width;
+    private double sum =0.0;
 
-    public Rectang(double height, double width) {
-        super(height, width);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-}
-
-class Square extends Shape {
-    // Code
     public Square(double width) {
-        super(width);
+        this.width = width;
+    }
+
+    public double getPerimeter(){
+        sum =  (width + width)*(double)2;
+        return sum;
     }
 
     @Override
@@ -100,6 +85,9 @@ public class MyUtils {
     public double sumPerimeter(List<?> firures) {
         // Code
         double sumPer = 0.0;
+        for (Object o:firures) {
+            if (o==null) return 0.0;
+        }
         if (firures == null) {
             return 0.0;
         }
@@ -123,10 +111,10 @@ class task05 {
     public static void main(String[] args) {
 //        Rectang rectang = new Rectang(2, 5);
 //        Square square = new Square(4);
-//        Square square1 = new Square(4.5);
+        Square square1 = new Square(4.5);
 //        System.out.println(rectang.getPerimeter());
 //        System.out.println(square.getPerimeter());
-//        System.out.println(square1.getPerimeter());
+        System.out.println(square1.getPerimeter());
         List<Object> firuresTest = new ArrayList<>();
         firuresTest.add(new Square (4.00));
         firuresTest.add(new Square (5.00));
