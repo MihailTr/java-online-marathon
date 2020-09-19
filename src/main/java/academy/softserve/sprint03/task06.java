@@ -133,7 +133,7 @@ class AddressBook implements Iterable{
                     + ", Last name: " + addressBook[counter].getPerson().lastName
                     + ", Address: " + addressBook[counter].getAddress();
             counter++;
-            System.out.println(string);
+//            System.out.println(string);
             return string;
         }
     }
@@ -199,6 +199,20 @@ class AddressBook implements Iterable{
         public String getAddress() {
             return address;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            NameAddressPair pair = (NameAddressPair) o;
+            return person.equals(pair.person) &&
+                    address.equals(pair.address);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(person, address);
+        }
     }
 }
 
@@ -215,7 +229,8 @@ public class task06 {
 //        addressBook.create("Steven", "Taylor", "Address #1");
 //        System.out.println(addressBook.read("Susan", "Brown"));
 
-        System.out.println(task06.sortedByTest1());
+//        System.out.println(task06.sortedByTest1());
+        System.out.println(task06.iteratorTest());
 
     }
 
@@ -228,9 +243,27 @@ public class task06 {
          AddressBook addressBook = new AddressBook(4);
          addressBook.create("John", "Brown", "Address #1");
          addressBook.create("Susan", "Brown", "Address #4");
-//         addressBook.create("Karen", "Davis", "Address #2");
-//         addressBook.create("John", "Taylor", "Address #1");
-//         addressBook.sortedBy(SortOrder.ASC);
+         addressBook.create("Karen", "Davis", "Address #2");
+         addressBook.create("John", "Taylor", "Address #1");
+         addressBook.sortedBy(SortOrder.ASC);
+         int counter = 0;
+         for (Object record : addressBook)
+             actual[counter++] = record.toString();
+         return Arrays.equals(expected, actual);
+    }
+
+    static boolean iteratorTest(){
+         String[] expected = {"First name: Karen, Last name: Davis, Address: Address #2",
+                 "First name: Steven, Last name: Taylor, Address: Address #3",
+                 "First name: Susan, Last name: Brown, Address: Address #4"};
+         String[] actual = new String[3];
+         AddressBook addressBook = new AddressBook(4);
+         addressBook.create("John", "Brown", "Address #1");
+         addressBook.create("Karen", "Davis", "Address #2");
+         addressBook.create("Steven", "Taylor", "Address #1");
+         addressBook.create("Susan", "Brown", "Address #4");
+         addressBook.update("Steven", "Taylor", "Address #3");
+         addressBook.delete("John", "Brown");
          int counter = 0;
          for (Object record : addressBook)
              actual[counter++] = record.toString();
