@@ -64,8 +64,13 @@ class Person {
             } catch (CodeException e) {
                 error.add(e);
             }
+            if (!(error.size()==0)) {
+                throw new IllegalArgumentException();
+            }else {
+                return person;
+            }
         }catch (IllegalArgumentException e){
-            String str="";
+            String str = "";
             for (RuntimeException re: error) {
                 str += re.getMessage()+"; ";
             }
@@ -98,7 +103,7 @@ class Person {
         if (idCode.matches("\\d{10}")) {
             this.idCode = idCode;
         } else {
-            throw new CodeException("Incorrect value " + idCode.length() + " for code " +
+            throw new CodeException("Incorrect value " + idCode + " for code " +
                     "(should contains exactly 10 digits)");
         }
     }
@@ -142,7 +147,7 @@ public class task04 {
 //        p.setIdCode("1111111111");
 //        p.setFirstName("Joe");
         Person.buildPerson("Joe", "KlarK2","AS-2");
-//        System.out.println(Person.buildPerson("Joe", "Klar","1111111111"));
+        System.out.println(Person.buildPerson("Joe", "Klar","1111111111"));
 //        Person.buildPerson("Joe", "Klar","1111111111");
     }
 }
