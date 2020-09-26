@@ -50,35 +50,30 @@ class Person {
         Person person = new Person();
         List<RuntimeException> error = new ArrayList<>();
         try {
-            try {
-                person.setFirstName(firstName);
-            } catch (NameException e) {
-                error.add(e);
-            }
-            try {
-                person.setLastName(lastName);
-            } catch (NameException e) {
-                error.add(e);
-            }
-            try {
-                person.setIdCode(idCode);
-            } catch (CodeException e) {
-                error.add(e);
-            }
-            if (!(error.size()==0)) {
-                 throw new IllegalArgumentException();
-            }else {
-                return person;
-            }
-        }catch (IllegalArgumentException e){
+            person.setFirstName(firstName);
+        } catch (NameException e) {
+            error.add(e);
+        }
+        try {
+            person.setLastName(lastName);
+        } catch (NameException e) {
+            error.add(e);
+        }
+        try {
+            person.setIdCode(idCode);
+        } catch (CodeException e) {
+            error.add(e);
+        }
+        if (!(error.size()==0)) {
             String str = "";
             for (RuntimeException re: error) {
                 str += re.getMessage()+"; ";
             }
             str = str.substring(0, str.length()-2);
-            System.out.println(str);
+            throw new IllegalArgumentException(str);
+        }else {
+            return person;
         }
-        return new Person();
     }
 
     public void setFirstName(String firstName) throws NameException {
@@ -86,8 +81,7 @@ class Person {
             this.firstName = firstName;
         } else {
             throw new NameException("Incorrect value " + firstName + " for firstName " +
-                    "(should start from upper case and contains only alphabetic " +
-                    "characters and -, space symbol;)");
+                    "(should start from upper case and contains only alphabetic characters and symbols -, _)");
         }
     }
 
@@ -147,8 +141,9 @@ public class task04 {
         Person p = new Person();
 //        p.setIdCode("1111111111");
 //        p.setFirstName("Joe");
-        Person.buildPerson("Joe", "KlarK2","AS-2");
+        Person.buildPerson("joe", "KlarK2","AS-2");
         System.out.println(Person.buildPerson("Joe", "Klar","1111111111"));
+        System.out.println(Person.buildPerson("joe", "KlarK2","AS-2"));
 //        Person.buildPerson("Joe", "Klar","1111111111");
     }
 }
