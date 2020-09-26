@@ -45,7 +45,8 @@ class Person {
         this.idCode = idCode;
     }
 
-    static Person buildPerson(String firstName, String lastName, String idCode)  {
+    static Person buildPerson(String firstName, String lastName,
+                               String idCode)  {
         Person person = new Person();
         List<RuntimeException> error = new ArrayList<>();
         try {
@@ -77,7 +78,7 @@ class Person {
             str = str.substring(0, str.length()-2);
             System.out.println(str);
         }
-        return person;
+        return new Person();
     }
 
     public void setFirstName(String firstName) throws NameException {
