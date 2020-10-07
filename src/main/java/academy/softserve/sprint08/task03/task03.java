@@ -85,6 +85,7 @@ class TestSuitHandler{
 }
 
 
+
 @TestSuite({"m1", "m2"})
 class Class1{
     public void m2(){
